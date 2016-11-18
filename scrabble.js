@@ -68,7 +68,7 @@ Scrabble.prototype.helloWorld = function() {
 };
 
 module.exports = Scrabble;
-
+module.exports = Player;
 
 var scrabble = new Scrabble();
 val = scrabble.letterValue('Q');
@@ -77,5 +77,55 @@ console.log(val);
 var test = scoreWord("bat");
 console.log(test);
 
-var array = ['jar', 'cookie', 'marshie', 'tool', 'zzz']
-console.log(highestScoreFrom(array))
+var array = ['jar', 'cookie', 'marshie', 'tool', 'zzz'];
+console.log(highestScoreFrom(array));
+
+
+
+var Player = function(name) {
+  this.name = name;
+  this.plays = [];
+};
+
+Player.prototype.play = function(word) {
+  if (this.totalScore() < 100) {
+    this.plays.push(word);
+  } else {
+    return false;
+  }
+};
+
+Player.prototype.totalScore = function() {
+  var total = 0;
+  for (var word of this.plays) {
+    total = total + scoreWord(word);
+  }
+  return total;
+};
+
+Player.prototype.hasWon = function() {
+  if (this.totalScore() >= 100) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+Player.prototype.highestScoringWord = function() {
+  return highestScoreFrom(this.plays);
+};
+
+Player.prototype.highestWordScore = function() {
+  return scoreWord(highestScoreFrom(this.plays));
+};
+
+
+var leah = new Player("Leah");
+leah.play("happy");
+leah.play("run");
+leah.play("social");
+console.log(leah.plays);
+console.log(leah.hasWon());
+console.log(leah.totalScore());
+console.log(leah.highestScoringWord());
+console.log(leah.highestWordScore());
