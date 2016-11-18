@@ -62,13 +62,9 @@ var scoreWord = function(word) {
     } return maxWord;
   };
 
-// YOUR CODE HERE
-Scrabble.prototype.helloWorld = function() {
-  return 'hello world!';
-};
 
-module.exports = Scrabble;
-module.exports = Player;
+  // *********** Tests For Scrabble ***********
+
 
 var scrabble = new Scrabble();
 val = scrabble.letterValue('Q');
@@ -81,6 +77,7 @@ var array = ['jar', 'cookie', 'marshie', 'tool', 'zzz'];
 console.log(highestScoreFrom(array));
 
 
+// *********** Player ***********
 
 var Player = function(name) {
   this.name = name;
@@ -119,6 +116,7 @@ Player.prototype.highestWordScore = function() {
   return scoreWord(highestScoreFrom(this.plays));
 };
 
+// *********** Tests For Player ***********
 
 var leah = new Player("Leah");
 leah.play("happy");
@@ -129,3 +127,6 @@ console.log(leah.hasWon());
 console.log(leah.totalScore());
 console.log(leah.highestScoringWord());
 console.log(leah.highestWordScore());
+
+module.exports = Scrabble;
+module.exports = Player;
